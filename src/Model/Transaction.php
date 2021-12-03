@@ -175,6 +175,7 @@ class Transaction extends TransactionPost implements ArrayAccess
     const EVENT_VOID = 'void';
     const EVENT_PENDING = 'pending';
     const EVENT_SETTLED = 'settled';
+    const METHOD_BIGPAY_TOKEN = 'bigpay_token';
     const METHOD_CREDIT_CARD = 'credit_card';
     const METHOD_ELECTRONIC_WALLET = 'electronic_wallet';
     const METHOD_GIFT_CERTIFICATE = 'gift_certificate';
@@ -243,6 +244,7 @@ class Transaction extends TransactionPost implements ArrayAccess
     public function getMethodAllowableValues()
     {
         return [
+            self::METHOD_BIGPAY_TOKEN,
             self::METHOD_CREDIT_CARD,
             self::METHOD_ELECTRONIC_WALLET,
             self::METHOD_GIFT_CERTIFICATE,
@@ -370,7 +372,7 @@ class Transaction extends TransactionPost implements ArrayAccess
         if ($this->container['method'] === null) {
             $invalid_properties[] = "'method' can't be null";
         }
-        $allowed_values = ["credit_card", "electronic_wallet", "gift_certificate", "store_credit", "apple_pay_card", "apple_pay_token", "token", "custom", "offsite", "offline", "nonce"];
+        $allowed_values = ["bigpay_token", "credit_card", "electronic_wallet", "gift_certificate", "store_credit", "apple_pay_card", "apple_pay_token", "token", "custom", "offsite", "offline", "nonce"];
         if (!in_array($this->container['method'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'method', must be one of #{allowed_values}.";
         }
@@ -412,7 +414,7 @@ class Transaction extends TransactionPost implements ArrayAccess
         if ($this->container['method'] === null) {
             return false;
         }
-        $allowed_values = ["credit_card", "electronic_wallet", "gift_certificate", "store_credit", "apple_pay_card", "apple_pay_token", "token", "custom", "offsite", "offline", "nonce"];
+        $allowed_values = ["bigpay_token", "credit_card", "electronic_wallet", "gift_certificate", "store_credit", "apple_pay_card", "apple_pay_token", "token", "custom", "offsite", "offline", "nonce"];
         if (!in_array($this->container['method'], $allowed_values)) {
             return false;
         }
@@ -478,7 +480,7 @@ class Transaction extends TransactionPost implements ArrayAccess
      */
     public function setMethod($method)
     {
-        $allowed_values = ['credit_card', 'electronic_wallet', 'gift_certificate', 'store_credit', 'apple_pay_card', 'apple_pay_token', 'token', 'custom', 'offsite', 'offline', 'nonce'];
+        $allowed_values = ['bigpay_token', 'credit_card', 'electronic_wallet', 'gift_certificate', 'store_credit', 'apple_pay_card', 'apple_pay_token', 'token', 'custom', 'offsite', 'offline', 'nonce'];
         if (!is_null($method) && (!in_array($method, $allowed_values))) {
             throw new \InvalidArgumentException("Invalid value for 'method', must be one of 'credit_card', 'electronic_wallet', 'gift_certificate', 'store_credit', 'apple_pay_card', 'apple_pay_token', 'token', 'custom', 'offsite', 'offline', 'nonce'");
         }
